@@ -6,8 +6,9 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <nav>
       <RouterLink to="/">Orders</RouterLink>
-      <RouterLink to="/">Tables</RouterLink>
+      <RouterLink to="/tables">Tables</RouterLink>
       <RouterLink to="/customers">Customers</RouterLink>
+      <RouterLink to="/transactions">Transactions</RouterLink>
     </nav>
   </header>
   <RouterView />
