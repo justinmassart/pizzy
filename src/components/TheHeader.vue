@@ -23,6 +23,9 @@ import { RouterLink } from 'vue-router'
       >
         <template #default>Transactions</template>
       </RouterLink>
+      <RouterLink :class="['header__links', { active: $route.path === '/pizzas' }]" to="/pizzas">
+        <template #default>Pizzas</template>
+      </RouterLink>
     </nav>
   </header>
 </template>

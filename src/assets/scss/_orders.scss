@@ -1,16 +1,55 @@
-.orders-list-container {
+.top-content {
+  button {
+    margin-left: auto;
+  }
+}
+
+.orders-lists {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24rem;
+
+  .card {
+    padding: 8rem;
+  }
+
+  section:nth-of-type(1) {
+    .list-title {
+      color: darkred;
+    }
+  }
+
+  section:nth-of-type(2) {
+    .list-title {
+      color: darkblue;
+    }
+  }
+
+  section:nth-of-type(3) {
+    .list-title {
+      color: darkgreen;
+    }
+  }
+
+  section:nth-of-type(4) {
+    .list-title {
+      color: purple;
+    }
+  }
+
+  .list-title {
+    text-align: center;
+    margin-bottom: 16rem;
+    font-weight: bold;
+  }
 }
 
 .orders-list {
-  padding: 8rem;
   display: flex;
   flex-direction: column;
   gap: 8rem;
-  height: 460rem;
-  overflow-y: scroll;
+  height: 440rem;
+  overflow: hidden scroll;
   position: relative;
 
   &::-webkit-scrollbar {
@@ -19,7 +58,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.20);
   }
 
   &:nth-of-type(2n) {
@@ -44,9 +83,25 @@
   border-radius: 5rem;
   transition: all .1s ease;
   cursor: pointer;
-  width: calc(100% - 16rem);
+  width: calc(100% - 12rem);
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 
   &:hover {
     background: rgba(234, 158, 0, 0.25) !important;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 8rem;
+
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }

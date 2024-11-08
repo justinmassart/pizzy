@@ -1,0 +1,52 @@
+.transactions {
+  padding: 8rem;
+  background: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 5rem;
+  box-shadow: 0 0 40rem rgba(0, 0, 0, 0.05);
+
+  &__top {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 8rem;
+
+    &__amount {
+      text-align: right;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    margin-top: 8rem;
+    height: 360rem;
+    overflow-y: scroll;
+
+    .transaction:nth-of-type(2n) {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .transaction {
+    padding: 8rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &__amount {
+      text-align: right;
+    }
+  }
+}

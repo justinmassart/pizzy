@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-const customers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+const pizzas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 const currentPage = ref(1)
 const itemsPerPage = 9
 
-const paginatedCustomers = computed(() => {
+const paginatedPizzas = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return customers.slice(start, end)
+  return pizzas.slice(start, end)
 })
 
 const totalPages = computed(() => {
-  return Math.ceil(customers.length / itemsPerPage)
+  return Math.ceil(pizzas.length / itemsPerPage)
 })
 
 const changePage = (page: number) => {
@@ -23,11 +23,11 @@ const changePage = (page: number) => {
 </script>
 
 <template>
-  <main class="customers">
+  <main class="pizzas">
     <div class="top-content">
       <div class="filters">
         <div class="filters__field">
-          <label for="name">Customer name :</label>
+          <label for="name">Pizza name :</label>
           <input id="name" type="text" />
         </div>
         <div class="filters__field">
@@ -39,15 +39,15 @@ const changePage = (page: number) => {
           <button>ASC</button>
         </div>
       </div>
-      <button class="button__add-new" type="button">Add a customer</button>
+      <button class="button__add-new" type="button">Add a pizza</button>
     </div>
-    <div class="customers__list large-list">
+    <div class="pizzas__list large-list">
       <div
-        v-for="(customer, index) in paginatedCustomers"
+        v-for="(pizza, index) in paginatedPizzas"
         :key="index"
-        class="customers__list__item customer base-list-item"
+        class="pizzas__list__item pizza base-list-item"
       >
-        <p class="customer__name">John Doe</p>
+        <p class="pizza__name">Margarita</p>
       </div>
     </div>
     <div class="pagination">
