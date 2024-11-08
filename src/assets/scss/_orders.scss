@@ -1,0 +1,52 @@
+.orders-list-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24rem;
+}
+
+.orders-list {
+  padding: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  height: 460rem;
+  overflow-y: scroll;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    width: 4rem;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  &:nth-of-type(2n) {
+    .order {
+      &:nth-of-type(2n) {
+        background: rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+
+  &:nth-of-type(2n+1) {
+    .order {
+      &:nth-of-type(2n+1) {
+        background: rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+}
+
+.order {
+  padding: 8rem;
+  border-radius: 5rem;
+  transition: all .1s ease;
+  cursor: pointer;
+  width: calc(100% - 16rem);
+
+  &:hover {
+    background: rgba(234, 158, 0, 0.25) !important;
+  }
+}
