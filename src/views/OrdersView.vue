@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import OrderCard from '@/components/OrderCard.vue'
+import OrderModal from '@/components/modals/OrderModal.vue'
 
 const orders = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 </script>
@@ -7,7 +8,7 @@ const orders = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 <template>
   <main>
     <div class="top-content">
-      <button class="button__add-new" type="button">Create an order</button>
+      <OrderModal />
     </div>
     <div class="orders-lists">
       <section class="waiting_orders">

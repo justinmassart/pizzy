@@ -22,6 +22,8 @@ const changePage = (page: number) => {
 }
 </script>
 
+<!-- TODO: Look for TransitionGroup to animate filters and page change -->
+
 <template>
   <main>
     <div class="top-content">
@@ -74,5 +76,3 @@ const changePage = (page: number) => {
     </div>
   </main>
 </template>
-
-<!-- TODO: pagination -->
