@@ -4,6 +4,6 @@
 
 <template>
   <main>
-    <h1>Transactions View</h1>
+    <h2>Transactions View</h2>
   </main>
 </template>

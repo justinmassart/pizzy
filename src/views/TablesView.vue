@@ -4,6 +4,6 @@
 
 <template>
   <main>
-    <h1>Tables View</h1>
+    <h2>Tables View</h2>
   </main>
 </template>

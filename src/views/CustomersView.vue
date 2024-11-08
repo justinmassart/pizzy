@@ -4,6 +4,6 @@
 
 <template>
   <main>
-    <h1>Customers View</h1>
+    <h2>Customers View</h2>
   </main>
 </template>
