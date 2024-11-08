@@ -1,15 +1,10 @@
 <script lang="ts" setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import TheHeader from '@/components/TheHeader.vue'
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Orders</RouterLink>
-      <RouterLink to="/tables">Tables</RouterLink>
-      <RouterLink to="/customers">Customers</RouterLink>
-      <RouterLink to="/transactions">Transactions</RouterLink>
-    </nav>
-  </header>
+  <h1>Pizzy</h1>
+  <TheHeader />
   <RouterView />
 </template>
