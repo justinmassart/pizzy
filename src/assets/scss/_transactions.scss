@@ -23,13 +23,22 @@
     height: 360rem;
     overflow-y: scroll;
 
+    &::-webkit-scrollbar {
+      width: 4rem;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.20);
+    }
+
     .transaction:nth-of-type(2n) {
       background: rgba(0, 0, 0, 0.05);
     }
   }
 
   .transaction {
-    padding: 8rem;
+    padding: 8rem 4rem 8rem 8rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
