@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import CustomerModal from '@/components/modals/CustomerModal.vue'
 
 const customers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 const currentPage = ref(1)
@@ -39,7 +40,7 @@ const changePage = (page: number) => {
           <button>ASC</button>
         </div>
       </div>
-      <button class="button__add-new" type="button">Add a customer</button>
+      <CustomerModal />
     </div>
     <div class="customers__list large-list">
       <div

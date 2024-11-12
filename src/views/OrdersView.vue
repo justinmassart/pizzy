@@ -6,7 +6,7 @@ const orders = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 </script>
 
 <template>
-  <main>
+  <main class="order-view">
     <div class="top-content">
       <OrderModal />
     </div>
