@@ -1,13 +1,18 @@
 import { defineStore } from 'pinia'
 import type { Customer } from '@/types/customer'
 import { ref } from 'vue'
+import { fakerEN } from '@faker-js/faker'
 
 export const useCustomerStore = defineStore('customer', () => {
-  const customers = ref<Customer[]>([
-    {
-      name: 'Jeffe Bezasse',
-    },
-  ])
+  const customers = ref<Customer[]>([])
+
+  function createFakeCustomers() {
+    for (let i = 0; i < 5; i++) {
+      customers.value.push({
+        name: fakerEN.person.fullName(),
+      })
+    }
+  }
 
   function getCustomers() {
     return customers.value
@@ -34,6 +39,8 @@ export const useCustomerStore = defineStore('customer', () => {
     )
     customers.value.splice(customerIndexToDelete, 1)
   }
+
+  createFakeCustomers()
 
   return { getCustomers, addCustomer, updateCustomer, deleteCustomer }
 })
