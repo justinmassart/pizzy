@@ -6,14 +6,35 @@ import type { Customer } from '@/types/customer'
 
 const customerStore = useCustomerStore()
 const customers = ref(customerStore.getCustomers())
-const currentPage = ref(1)
+const currentPage = ref<number>(1)
 const itemsPerPage: number = 9
 const selectedCustomer = ref<Customer | undefined>(undefined)
+const searchTerm = ref<string>('')
+const orderLogic = ref<string>('createdAt')
+const orderWay = ref<'ASC' | 'DESC'>('ASC')
+
+const filteredCustomers = computed(() => {
+  const filtered = customers.value.filter((customer) =>
+    customer.name.toLowerCase().includes(searchTerm.value.toLowerCase()),
+  )
+
+  if (orderLogic.value === 'name') {
+    filtered.sort((a, b) =>
+      orderWay.value === 'ASC' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
+    )
+  } else if (orderLogic.value === 'createdAt') {
+    filtered.sort((a, b) =>
+      orderWay.value === 'ASC' ? a.createdAt - b.createdAt : b.createdAt - a.createdAt,
+    )
+  }
+
+  return filtered
+})
 
 const paginatedCustomers = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return customers.value.slice(start, end)
+  return filteredCustomers.value.slice(start, end)
 })
 
 const totalPages = computed(() => {
@@ -40,6 +61,14 @@ function reloadCustomers() {
 function unselectCustomer() {
   selectedCustomer.value = undefined
 }
+
+function changeOrderWay() {
+  if (orderWay.value === 'ASC') {
+    orderWay.value = 'DESC'
+  } else {
+    orderWay.value = 'ASC'
+  }
+}
 </script>
 
 <template>
@@ -48,15 +77,17 @@ function unselectCustomer() {
       <div class="filters">
         <div class="filters__field">
           <label for="name">Customer name :</label>
-          <input id="name" type="text" />
+          <input id="name" v-model="searchTerm" type="text" />
         </div>
         <div class="filters__field">
           <label for="sort">Sort by :</label>
-          <select id="sort" name="sort">
+          <select id="sort" v-model="orderLogic" name="sort">
             <option selected value="createdAt">Created at</option>
             <option value="name">Name</option>
           </select>
-          <button>ASC</button>
+          <button @click="changeOrderWay">
+            {{ orderWay }}
+          </button>
         </div>
       </div>
       <CustomerModal

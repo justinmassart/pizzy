@@ -30,7 +30,7 @@ function resetName() {
 }
 
 function createCustomer() {
-  customerStore.addCustomer({ name: name.value })
+  customerStore.addCustomer({ name: name.value, createdAt: Date.now() })
   emit('customerUpdated')
   modalRef.value.closeModal()
 }

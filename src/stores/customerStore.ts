@@ -10,6 +10,7 @@ export const useCustomerStore = defineStore('customer', () => {
     for (let i = 0; i < 5; i++) {
       customers.value.push({
         name: fakerEN.person.fullName(),
+        createdAt: Date.now(),
       })
     }
   }
