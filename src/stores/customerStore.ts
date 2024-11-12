@@ -1,26 +1,39 @@
 import { defineStore } from 'pinia'
 import type { Customer } from '@/types/customer'
+import { ref } from 'vue'
 
 export const useCustomerStore = defineStore('customer', () => {
-  const customers: Customer[] = []
+  const customers = ref<Customer[]>([
+    {
+      name: 'Jeffe Bezasse',
+    },
+  ])
+
+  function getCustomers() {
+    return customers.value
+  }
 
   function addCustomer(customer: Customer) {
-    try {
-      customers.push(customer)
-      console.log('A new customer was added :', customer)
-      console.log('Every customers :', customers)
-    } catch (e) {
-      console.log(e)
+    customers.value.push(customer)
+  }
+
+  function updateCustomer(oldCustomer: Customer, newName: string) {
+    const customer = customers.value.find((customer: Customer) => customer === oldCustomer)
+
+    if (!customer) {
+      console.log('No customer found')
+      return
     }
+
+    customer.name = newName
   }
 
-  function deleteCustomer(name: string) {
-    const customerIndex = customers.findIndex((customer: Customer) => customer.name === name)
-    const customer: Customer = customers[customerIndex]
-    customers.splice(customerIndex, 1)
-    console.log('A customer was deleted :', customer)
-    console.log('Every customers :', customers)
+  function deleteCustomer(customerToDelete: Customer) {
+    const customerIndexToDelete = customers.value.findIndex(
+      (customer: Customer) => customer === customerToDelete,
+    )
+    customers.value.splice(customerIndexToDelete, 1)
   }
 
-  return { customers, addCustomer, deleteCustomer }
+  return { getCustomers, addCustomer, updateCustomer, deleteCustomer }
 })
