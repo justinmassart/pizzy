@@ -165,7 +165,7 @@ select {
 
 .modal {
   position: fixed;
-  z-index: 999;
+  z-index: 100;
   top: 0;
   bottom: 0;
   left: 0;
@@ -175,11 +175,22 @@ select {
   justify-content: center;
   align-items: center;
 }
+.modal__background-close {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  cursor: pointer;
+}
 .modal__body {
   padding: 20rem;
   background: #f5f5f5;
   border-radius: 10rem;
   width: 50%;
+  position: relative;
+  z-index: 200;
 }
 .modal__header {
   display: flex;
