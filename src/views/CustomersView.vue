@@ -1,25 +1,44 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import CustomerModal from '@/components/modals/CustomerModal.vue'
+import { useCustomerStore } from '@/stores/customerStore'
+import type { Customer } from '@/types/customer'
 
-const customers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+const customerStore = useCustomerStore()
+const customers = ref(customerStore.getCustomers())
 const currentPage = ref(1)
-const itemsPerPage = 9
+const itemsPerPage: number = 9
+const selectedCustomer = ref<Customer | undefined>(undefined)
 
 const paginatedCustomers = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
-  return customers.slice(start, end)
+  return customers.value.slice(start, end)
 })
 
 const totalPages = computed(() => {
-  return Math.ceil(customers.length / itemsPerPage)
+  return Math.ceil(customers.value.length / itemsPerPage)
 })
 
 const changePage = (page: number) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page
   }
+}
+
+function openCustomerModal(customer: Customer) {
+  if (!customer) {
+    return
+  }
+  selectedCustomer.value = customer
+}
+
+function reloadCustomers() {
+  customers.value = customerStore.getCustomers()
+}
+
+function unselectCustomer() {
+  selectedCustomer.value = undefined
 }
 </script>
 
@@ -40,15 +59,20 @@ const changePage = (page: number) => {
           <button>ASC</button>
         </div>
       </div>
-      <CustomerModal />
+      <CustomerModal
+        :selectedCustomer
+        @customerUpdated="reloadCustomers"
+        @unselectCustomer="unselectCustomer"
+      />
     </div>
     <div class="customers__list large-list">
       <div
         v-for="(customer, index) in paginatedCustomers"
         :key="index"
         class="customers__list__item customer base-list-item"
+        @click="openCustomerModal(customer)"
       >
-        <p class="customer__name">John Doe</p>
+        <p class="customer__name">{{ customer.name }}</p>
       </div>
     </div>
     <div class="pagination">

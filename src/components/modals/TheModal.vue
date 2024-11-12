@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { defineExpose, defineProps, ref, watch } from 'vue'
 
 const open = ref(false)
 
@@ -7,6 +7,27 @@ defineProps<{
   modalTitle: string
   buttonText?: string
 }>()
+
+const emit = defineEmits(['close'])
+
+function closeModal() {
+  open.value = false
+}
+
+function openModal() {
+  open.value = true
+}
+
+watch(open, (newVal) => {
+  if (!newVal) {
+    emit('close')
+  }
+})
+
+defineExpose({
+  closeModal,
+  openModal,
+})
 </script>
 
 <template>
